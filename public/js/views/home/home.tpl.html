@@ -1,0 +1,105 @@
+<div class="container-full">
+    <div class="home-background">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <header class="my-movies-header">
+                    <h1>
+                        My Movies
+                    </h1>
+                </header>
+            </div>
+        </div>
+        <div class="website-desc">
+            <div class="row text-center">
+                <div class="col-md-8 col-md-offset-2">
+                    <div>
+                        Welcome to My Movies Website
+                    </div>
+                    <div>
+                        Here you can review, rate your favorite movies and also make your own movies list
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col-md-12">
+        <div class="movie-list">
+            <h1>Movies List</h1>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" ng-init="loadData()">
+    <div class="movie show-btn" ng-repeat="movie in list | orderBy : 'title' | limitTo : numOfMovies">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="poster-img">
+                    <a href="#/movie/{{movie._id}}">
+                        <img ng-src="{{movie.poster}}" class="img-responsive poster">
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="add-btn-home text-right" ng-if="movie.added === false && priv()">
+                            <a class="btn btn-primary btn-sm" href="#/addMovieState/{{movie._id}}">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm" ng-click="deleteMovie(movie._id)" ng-if="priv() === 'admin'">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </div>
+                        <a href="#/movie/{{movie._id}}" class="movie-title text-center">
+                            <h1>{{movie.title + " " + "(" + movie.year + ")"}}</h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="synopsis">{{movie.synopsis | limitTo: 150}}... &nbsp;
+                            <a href="#/movie/{{movie._id}}">Continue Reading</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="info">
+                            <span class="underline">Run Time:</span> {{movie.runtime | secondsToDateTime | date:'mm:ss'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="info">
+                            <span class="underline">IMDB Rating:</span> {{movie.rating}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="info">
+                            <span class="underline">MM Rating:</span> {{movie.averageRate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="info">
+                            <span class="underline">Genres:</span>
+                            <span ng-repeat="genre in movie.genres">{{genre}} &nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="show-more" ng-if="numOfMovies <= list.length">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <button class="btn btn-primary" ng-click="showMore()">Show More</button>
+            </div>
+        </div>
+    </div>
+</div>

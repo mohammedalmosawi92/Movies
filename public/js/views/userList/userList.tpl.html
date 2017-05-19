@@ -1,0 +1,35 @@
+<div class="user-list-page" ng-init="loadData()">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="user-list-header">{{user.username}} List</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="table-responsive" ng-if="user.favorite.length > 0">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th>Title</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Rate</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Comment</th>
+                        </tr>
+                        <tbody ng-repeat="movie in user.favorite">
+                            <tr>
+                                <th class="text-center">{{$index + 1}}</th>
+                                <th>{{movie.title}}</th>
+                                <th class="text-center">{{movie.status}}</th>
+                                <th class="text-center">{{movie.rate}}</th>
+                                <th class="text-center">{{movie.date | date:'MM/dd/yyyy'}}</th>
+                                <th class="text-center">{{movie.comment}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

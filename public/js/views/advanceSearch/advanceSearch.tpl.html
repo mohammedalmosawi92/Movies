@@ -1,0 +1,85 @@
+<div class="advance-search-page" ng-init="loadData()">
+    <div class="container">
+        <div class="advance-search-header">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h1>Advance Search</h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="advance-search-box">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="row">
+                        <div class="advance-search-inputs">
+                            <div class="col-md-8">
+                                <input type="text" placeholder="Search" ng-model="searchInput" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="advance-search-inputs">
+                            <div class="col-md-2">
+                                <select ng-model="searchType" class="form-control">
+                                    <option value="title">Title</option>
+                                    <option value="year">Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="advance-search-inputs">
+                            <div class="col-md-2 text-center">
+                                <button ng-click="advanceSearch()" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="input-field">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h3>Sort By:</h3>
+                        </div>
+                        <div class="sort-input">
+                            <div class="col-md-3 text-left">
+                                <select ng-model="sortType" class="form-control">
+                                    <option value="title">Title</option>
+                                    <option value="year">Year</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row movies-advance-list" ng-repeat="movie in list | limitTo : moviesNum | orderBy : sortType">
+                    <div class="col-md-8">
+                        <div class="search-image-div">
+                            <img ng-src="{{movie.coverImage}}" class="img-responsive">
+                            <a href="#/movie/{{movie._id}}" class="movie-title text-center">
+                                <span class="movie-advance-title">
+                                {{movie.title + " " + "(" + movie.year + ")"}}
+                            </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-right" ng-if="movie.added === false && priv">
+                        <span class="add-btn-advance-search">
+                            <a href="#/addMovieState/{{movie._id}}" class="btn btn-primary">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="row text-center" ng-if="moviesNum < list.length">
+                    <div class="col-md-12">
+                        <button ng-click="showMoreMovies()" class="btn btn-primary">Show More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

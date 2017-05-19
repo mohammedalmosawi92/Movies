@@ -1,0 +1,259 @@
+<div class="oneMovie">
+    <div class="container" ng-init="loadData()">
+
+        <div class="row text-center">
+
+            <div class="col-md-10" ng-if="!movie.isEdit">
+                <h2 class="oneMovie-title">{{movie.title + " " + "(" + movie.year + ")"}}</h2>
+            </div>
+            <div class="movie-title-year-edit" ng-if="movie.isEdit">
+                <div class="col-md-8">
+                    <input type="text" ng-model="movie.title" class="form-control">
+                </div>
+
+                <div class="col-md-2">
+                    <input type="number" ng-model="movie.year" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-2 text-right">
+                <div class="btn-one-movie-page" ng-if="movie.added === false && priv()">
+                    <a class="btn btn-primary btn-sm" href="#/addMovieState/{{movie._id}}">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" ng-click="deleteMovie(movie._id)" ng-if="priv() === 'admin'" href="#/home">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                    <a class="btn btn-success btn-sm" ng-click="editMovie()" ng-if="priv() === 'admin' && movie.isEdit === false">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-success btn-sm" ng-click="saveMovie(movie._id, movie.genres)" ng-if="priv() === 'admin' && movie.isEdit">
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-if="!movie.isEdit">
+            <div class="col-md-4">
+                <div class="oneMovie-img">
+                    <img class="img-responsive" ng-src="{{movie.coverImage}}">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="oneMovie-synopsis">
+                    <span class="underline">Synopsis:</span> {{movie.synopsis}}
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="info">
+                            <span class="underline">Run Time:</span> {{movie.runtime | secondsToDateTime | date:'mm:ss'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="info">
+                            <span class="underline">IMDB Rating:</span> {{movie.rating}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="info">
+                            <span class="underline">MM Rating:</span> {{movie.averageRate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="info">
+                            <span class="underline">
+                            Genres:
+                            </span>
+                            <span ng-repeat="genre in movie.genres">{{genre}} &nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" ng-if="movie.isEdit">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="edit-one-movie">
+                        <div class="col-md-12">
+                            <input type="url" ng-model="movie.coverImage" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="edit-one-movie">
+                        <div class="col-md-12">
+                            <input type="url" ng-model="movie.synopsis" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="edit-one-movie">
+                        <div class="col-md-12">
+                            <input type="number" ng-model="movie.runtime" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="underline">IMDB Rating:</span> {{movie.rating}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="underline">MM Rating:</span> {{movie.averageRate}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="edit-one-movie">
+                        <div class="col-md-12">
+                            <input type="text" ng-model="movie.genres" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="oneMovie-screen" ng-if="movie.screenshot.length != 0">
+
+
+            <div class="row">
+                <div class="col-md-10">
+                    <a href="#/screenshot/{{movie._id}}" class="screenshot-link">
+                        <h2 class="oneMovie-screenshot-title">Screenshot:</h2>
+                    </a>
+                </div>
+                <div class="col-md-2 text-right">
+                    <span class="screenshot-edit-btn">
+                    <a class="btn btn-success btn-sm" ng-click="editScreen()" ng-if="priv() === 'admin' && movie.editScreen === false">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-success btn-sm" ng-click="saveScreen(movie._id, movie.screenshot)" ng-if="priv() === 'admin' && movie.editScreen">
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </a>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row" ng-if="!movie.editScreen">
+                <div class="col-md-4" ng-repeat="shot in movie.screenshot track by $index | limitTo: 3">
+                    <div class="oneMovie-screenshot">
+                        <img ng-src="{{shot}}" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-if="movie.editScreen">
+                <div class="col-md-4" ng-repeat="shot in movie.screenshot | limitTo: 3">
+                    <div class="oneMovie-screenshot">
+                        <input type="url" ng-model="movie.screenshot[$index]" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="oneMovie-cast" ng-if="movie.cast.length != 0">
+
+
+            <div class="row">
+                <div class="col-md-10">
+                    <h2 class="oneMovie-cast-title">Cast:</h2>
+                </div>
+                <div class="col-md-2 text-right">
+                   <span class="cast-edit-btn">
+                    <a class="btn btn-success btn-sm" ng-click="editCast()" ng-if="priv() === 'admin' && movie.editCast === false">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-success btn-sm" ng-click="saveCast(movie._id, movie.cast)" ng-if="priv() === 'admin' && movie.editCast">
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </a>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row" ng-if="movie.editCast === false">
+                <div class="col-sm-3 col-xs-6" ng-repeat="cast in movie.cast | limitTo: 4">
+                    <div class="oneMovie-cast-image">
+                        <a href="http://www.imdb.com/name/nm{{cast.imdb_code}}" target="_blank">
+                            <img ng-src="{{cast.url_small_image}}" class="img-responsive">
+                        </a>
+                    </div>
+                    <h4 class="text-center">{{cast.name}}</h4>
+                </div>
+            </div>
+            <div class="row" ng-if="movie.editCast">
+                <div class="col-sm-3 col-xs-6" ng-repeat="cast in movie.cast | limitTo: 4">
+                    <input class="form-control" ng-model="movie.cast[$index].url_small_image">
+                    <input class="form-control" ng-model="movie.cast[$index].name" type="text">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="oneMovie-review">
+            <div class="row" ng-if="movie.review.length > 0">
+                <div class="col-md-12">
+                    <h2 class="oneMovie-review-title">Review:</h2>
+                </div>
+            </div>
+            <div class="row" ng-repeat="review in movie.review">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="review-section">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="one-review">
+                                    {{$index + 1 }}. {{review.myReview}}
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-right" ng-if="review.id == userId || priv() === 'admin'">
+                                <div class="del-review">
+                                    <button ng-click="delReview($index)" class="btn btn-danger btn-sm">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-if="priv">
+                <div class="col-md-10 col-md-offset-1">
+                    <form name="addReviewForm">
+                        <div class="add-review">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control" placeholder="Add Review" ng-model="review" required>
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                    <div class="add-review-btn">
+                                        <button class="btn btn-primary" ng-click="addReview()" ng-disabled="addReviewForm.$invalid">
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+mongoimport --db MoviesDatabase --collection movies --type json --file movie.json --jsonArray

@@ -1,0 +1,153 @@
+<div class="add-movie">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <div class="add-movie-title">
+                    <h1 class="add-movie-header">Add New Movie</h1>
+                </div>
+            </div>
+        </div>
+        <div class="add-movie-form">
+            <form name="addMovieForm">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="title-header">
+                                    <h3>Title:</h3>
+                                </div>
+                                <div class="title-input">
+                                    <input type="text" placeholder="Title" ng-model="newMovie.title" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="year-header">
+                                    <h4>Release Year:</h4>
+                                </div>
+                                <div class="year-input">
+                                    <input type="number" placeholder="Year" ng-model="newMovie.year" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mpa-header">
+                                    <h4>MPA-Rating</h4>
+                                </div>
+                                <div class="mpa-input">
+                                    <input type="text" placeholder="Motion Picture Association" ng-model="newMovie.mpa" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="runtime-header">
+                                    <h4>Run Time:</h4>
+                                </div>
+                                <div class="runtime-input">
+                                    <input type="number" ng-model="newMovie.time" class="form-control without">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="cover-header">
+                                    <h3>Poster:</h3>
+                                </div>
+                                <div class="one-cover-input">
+                                    <input type="text" ng-model="newMovie.poster" class="form-control" placeholder="Poster">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="cover-header">
+                                    <h3>Cover:</h3>
+                                </div>
+                                <div class="one-cover-input">
+                                    <input type="text" ng-model="newMovie.cover" class="form-control" placeholder="Cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="add-movie-screenshot-header">
+                                    <h3>Screenshot:</h3>
+                                </div>
+                                <div class="screenshot-input" ng-repeat="item in screenshot track by $index">
+                                    <div class="one-screenshot-input">
+                                        <input type="url" ng-model="item.value" class="form-control" placeholder="Screenshot">
+                                    </div>
+                                </div>
+                                <div class="add-more-screeshot">
+                                    <span>To Add More Screenshot Press Here</span>
+                                    <button ng-click="addNewScreeshotInput()" class="btn btn-primary btn-xs">add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="add-movie-screenshot-header">
+                                    <h3>Cast:</h3>
+                                </div>
+                                <div class="screenshot-input" ng-repeat="item in cast track by $index">
+                                    <div class="one-cast-input">
+                                        <input type="text" ng-model="item.name" class="form-control" placeholder="Name">
+                                    </div>
+                                    <div class="one-cast-input">
+                                        <input type="url" ng-model="item.url" class="form-control" placeholder="Image URL">
+                                    </div>
+                                </div>
+                                <div class="add-more-screeshot">
+                                    <span>To Add More Cast Press Here</span>
+                                    <button ng-click="addNewCastInput()" class="btn btn-primary btn-xs">add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="genres-header">
+                                    <h3>Genres:</h3>
+                                </div>
+                                <div class="genres-input" ng-repeat="item in genre track by $index">
+                                    <div class="one-genres-input">
+                                        <input type="text" ng-model="item.value" class="form-control" placeholder="Screenshot">
+                                    </div>
+                                </div>
+                                <div class="add-more-genres">
+                                    <span>To Add More Genres Press Here</span>
+                                    <button ng-click="addNewGenresInput()" class="btn btn-primary btn-xs">add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="synopsis-header">
+                                    <h3>Synopsis</h3>
+                                </div>
+                                <div class="synopsis-input">
+                                    <textarea ng-model="newMovie.synopsis" class="form-control" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="submit-movie">
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                    <button ng-click="submitMovie()" class="btn btn-primary">
+                                        Submit Movie
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

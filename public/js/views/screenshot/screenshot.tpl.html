@@ -1,0 +1,49 @@
+<div class="screenshot-page" ng-init="loadData()">
+    <div class="container">
+
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="screenshot-header">
+                <a href="#/movie/{{movie._id}}">{{movie.title}}</a> Screenshots
+                </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4" ng-repeat="screenshot in movie.screenshot track by $index">
+                <div class="screen-box text-right">
+                    <button ng-click="deleteScreen($index)" class="btn btn-danger" ng-if="priv() === 'admin'">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                    <button ng-click="updateScreen($index)" class="btn btn-success" ng-if="priv() === 'admin' && edit[$index] === false">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </button>
+                    <button ng-click="saveScreen($index, movie.screenshot[$index])" class="btn btn-success" ng-if="priv() === 'admin' && edit[$index]">
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </button>
+
+                    <img ng-src="{{movie.screenshot[$index]}}" class="img-responsive" ng-if="edit[$index] === false">
+                    <input type="url" ng-model="movie.screenshot[$index]" class="form-control" ng-if="edit[$index]">
+                </div>
+            </div>
+        </div>
+
+        <div class="add-more-screenshot" ng-if="priv() === 'admin'">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Add More Screenshot:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="url" class="form-control" ng-model="newScreen" placeholder="Screenshot URL">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-success" ng-click="addScreen()">Add</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

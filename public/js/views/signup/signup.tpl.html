@@ -1,0 +1,45 @@
+<div class="signup-page">
+    <form name="myForm">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h1>Sign Up</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Username</h3>
+                            <input type="text" class="form-control" placeholder="Username" ng-model="user.username" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Password</h3>
+                            <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Confirm Password</h3>
+                            <input type="password" class="form-control" placeholder="Password" ng-model="user.passwordConfirm" required>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="dontMatch">
+                        <div class="col-md-12">
+                            <div class="password-dont-match">Passwords do not match</div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <div class="signup-btn">
+                                <button class="btn btn-primary" ng-click="signup()" ng-disabled="myForm.$invalid">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

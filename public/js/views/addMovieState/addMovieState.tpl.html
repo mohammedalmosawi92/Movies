@@ -1,0 +1,73 @@
+<div class="movie-state-page" ng-init="loadData()">
+    <form name="addMovie">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Movie Title:</h3>
+                            <input class="form-control" placeholder="Movie Title" ng-model="movie.title" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <h3>Status:</h3>
+                                <select class="form-control" ng-model="selectList">
+                                    <option value="Watched">
+                                        Watched
+                                    </option>
+                                    <option value="Plan to watch">
+                                        Plan to watch
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h3>Date:</h3>
+                                <input class="form-control" type="date" placeholder="Movie Title" ng-disabled="selectList == 'Plan to watch'" ng-model="MovieDate">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h3>Rate:</h3>
+                                <select ng-model="rateMovie" class="form-control" ng-disabled="selectList == 'Plan to watch'">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <h3>comment</h3>
+                                <input class="form-control" type="text" maxlength="30" placeholder="Comment" ng-disabled="selectList == 'Plan to watch'" ng-model="movieComment">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <a class="btn btn-primary" ng-click="add()" href="#/myList">
+                                Add to list
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

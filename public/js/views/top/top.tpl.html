@@ -1,0 +1,58 @@
+<div class="top-movies-page">
+    <div class="container" ng-init="loadData()">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="top-header">Top Movies</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th class="top-page-row text-center">#</th>
+                            <th ng-click="sortByTitle()" class="top-page-row">Title</th>
+                            <th ng-click="sortByYear()" class="top-page-row text-center">Year</th>
+                            <th ng-click="sortByIMDBRate()" class="top-page-row text-center">IMDB</th>
+                            <th ng-click="sortByMMRate()" class="top-page-row text-center">MM</th>
+                            <th class="top-page-row text-center" ng-if="priv">Add</th>
+                            <th class="top-page-row text-center" ng-if="priv === 'admin'">Delete</th>
+                        </tr>
+                        <tr ng-repeat="movie in list | orderBy: userSort : sortType">
+                            <td class="vertical-align-data table-data text-center">
+                                {{$index + 1}}
+                            </td>
+                            <td class="table-data">
+                                <a href="#/movie/{{movie._id}}" class="table-movie-url">
+                                    <img ng-src="{{movie.coverImage}}" class="top-image"> {{movie.title}}
+                                </a>
+                            </td>
+                            <td class="vertical-align-data table-data text-center">
+                                {{movie.year}}
+                            </td>
+                            <td class="vertical-align-data table-data text-center">
+                                {{movie.rating}}
+                            </td>
+                            <td class="vertical-align-data table-data text-center">
+                                {{movie.averageRate}}
+                            </td>
+                            <td class="vertical-align-data table-data text-center" ng-if="priv">
+                                <span ng-if="movie.added === false">
+                                    <a class="btn btn-primary btn-xs" href="#/addMovieState/{{movie._id}}">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                    </a>
+                                </span>
+                            </td>
+
+                            <td class="vertical-align-data table-data text-center" ng-if="priv === 'admin'">
+                                <a class="btn btn-danger btn-xs" ng-click="deleteMovie(movie._id)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

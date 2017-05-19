@@ -1,0 +1,19 @@
+{
+  "name": "movies",
+  "version": "1.0.0",
+  "description": "movies-list",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohammed Almosawi",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.3.0",
+    "mongoose": "^4.9.2"
+  }
+}

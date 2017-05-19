@@ -1,0 +1,689 @@
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    height: 100%;
+    background: #FAFAFA;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.ng-cloak {
+    display: none !important;
+}
+
+nav {
+    background: rgba(0, 121, 107, 0.9) !important;
+    border-bottom-width: 0px !important;
+}
+
+.website-name {
+    margin-left: 50px;
+    font-size: 30px;
+    font-family: 'Architects Daughter', cursive;
+    font-weight: 900
+}
+
+.header-image {
+    width: 40px;
+    position: absolute;
+    top: 10px;
+}
+
+.collapse-icon i {
+    color: white
+}
+
+.website-name a {
+    color: white !important;
+    text-decoration: none;
+}
+
+.routes {
+    color: white !important;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.signing {
+    color: black
+}
+
+.movie-list {
+    margin-top: 40px;
+    margin-bottom: 100px;
+    text-decoration: underline;
+}
+
+.movie-list h1 {
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.poster-img img {
+    margin: auto;
+    height: 40vh;
+    border-radius: 5px;
+}
+
+.add-btn a {
+    margin: auto;
+}
+
+.myRoutes {
+    margin-right: 50px;
+}
+
+.user i {
+    cursor: pointer;
+    color: white !important;
+    margin-left: 15px;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.pull-left {
+    display: block !important;
+}
+
+.dropdown {
+    float: right;
+    margin-top: 15px;
+}
+
+.dropdown-menu-left {
+    padding-right: 200px !important;
+}
+
+.add-movie-dropdown {
+    margin-right: 20px;
+}
+
+.navbar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.movie {
+    margin-bottom: 80px;
+}
+
+.add-btn-home {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.delete-btn-home {
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 40px;
+}
+
+.movie:hover .add-btn-home {
+    display: inline-block;
+}
+
+.movie:hover .delete-btn-home {
+    display: inline-block;
+}
+
+.synopsis {
+    text-align: justify;
+}
+
+.show-more {
+    margin-bottom: 20px;
+}
+
+.home-background {
+    height: 100vh;
+    background-image: url(jake-hills-194864.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 30px;
+    background-position: center left;
+}
+
+.my-movies-header {
+    padding-top: 60px;
+    margin: auto;
+    color: white;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.my-movies-header h1 {
+    font-size: 50px;
+}
+
+.website-desc {
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.synopsis {
+    font-size: 18px;
+}
+
+.synopsis a:link,
+.synopsis a:visited {
+    color: black !important;
+    text-decoration: underline;
+}
+
+.synopsis a:hover,
+.synopsis a:active {
+    color: black !important;
+    text-decoration: none;
+}
+
+.info {
+    font-size: 18px;
+}
+
+.dropdown-menu {
+    margin-top: 19px;
+}
+
+.login-dropdown {
+    width: 300px !important;
+    padding: 5px 15px;
+    background: white !important;
+}
+
+.signup {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.search-dropdown {
+    width: 600px !important;
+    padding: 5px 15px;
+    background: white !important;
+}
+
+.search-dropdown .btn {
+    margin-top: 2px !important;
+}
+
+.movie-title {
+    color: black !important;
+    text-decoration: none !important;
+    font-weight: 700
+}
+
+
+/* One Movie Page CSS */
+
+.oneMovie {
+    margin-top: 80px;
+}
+
+.movie-title-year-edit {
+    position: relative;
+    top: 20px;
+}
+
+.screenshot-link {
+    color: #333 !important;
+}
+
+.screenshot-edit-btn {
+    position: relative;
+    top: 20px;
+}
+
+.cast-edit-btn {
+    position: relative;
+    top: 20px;
+}
+
+.edit-one-movie {
+    margin-top: 20px;
+}
+
+.oneMovie-img img {
+    border-radius: 10px;
+    margin: auto;
+    height: 50vh;
+}
+
+.btn-one-movie-page {
+    margin-top: 22px;
+}
+
+.oneMovie-title {
+    margin-bottom: 30px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.oneMovie-synopsis {
+    padding-top: 10px;
+    text-align: justify;
+    font-size: 18px;
+}
+
+.underline {
+    font-weight: 700;
+}
+
+.oneMovie-screen {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.oneMovie-screenshot {
+    margin-top: 20px;
+}
+
+.oneMovie-screenshot img {
+    border-radius: 5px;
+}
+
+.oneMovie-screenshot-title {
+    font-weight: 700
+}
+
+.oneMovie-cast-title {
+    font-weight: 700
+}
+
+.oneMovie-cast-image img {
+    margin: auto;
+    width: 30%;
+    border-radius: 5px;
+}
+
+.oneMovie-review {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.oneMovie-review-title {
+    font-weight: 700;
+}
+
+.one-review {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.review-section {
+    border-bottom: 2px solid black;
+    padding-top: 13px
+}
+
+.del-review button {
+    position: relative;
+    top: 15px;
+}
+
+.add-review {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.add-review-btn {
+    margin-top: 15px;
+}
+
+
+/* Search Page Page CSS */
+
+.search-page {
+    margin-top: 80px;
+}
+
+.found-match {
+    margin-bottom: 100px !important;
+}
+
+.search-header {
+    margin-bottom: 50px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.add-btn-seach-page {
+    position: relative;
+    right: 40px;
+    top: 15px;
+}
+
+.search-cover {
+    height: 100px;
+    border: 5px solid white !important;
+}
+
+
+/* Add Movie Page CSS */
+
+.add-movie {
+    margin-top: 80px;
+}
+
+.one-cast-input {
+    margin-bottom: 5px;
+}
+
+.add-movie-header {
+    font-family: 'Architects Daughter', cursive;
+}
+
+.add-movie-screenshot-header {
+    font-weight: 700;
+}
+
+.add-more-screeshot {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.one-screenshot-input {
+    margin-top: 5px;
+}
+
+.add-more-genres {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.one-genres-input {
+    margin-top: 5px;
+}
+
+.add-more-cover {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.one-cover-input {
+    margin-top: 5px;
+}
+
+.submit-movie {
+    margin-top: 20px;
+}
+
+
+/* signup page */
+
+.signup-page {
+    margin-top: 80px;
+}
+
+.signup-btn {
+    margin-top: 10px;
+}
+
+.signin-btn {
+    margin-top: 10px;
+}
+
+.password-dont-match {
+    font-size: 20px;
+    text-transform: capitalize;
+    color: red;
+}
+
+
+/* Top Movie Page */
+
+.top-movies-page {
+    margin-top: 80px;
+}
+
+.top-header {
+    font-weight: 700;
+    margin-bottom: 50px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.top-title {
+    border-bottom: 3px solid black
+}
+
+.top-page-row {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.top-main-row {
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.top-main-row-title {
+    text-align: left;
+}
+
+.movie-in-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    border-bottom: 1px solid black
+}
+
+.rate {
+    color: red;
+    vertical-align: middle;
+}
+
+.top-image {
+    height: 80px;
+}
+
+.table-data {
+    font-size: 20px;
+}
+
+.table-data .table-movie-url:link,
+.table-data .table-movie-url:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.table-data .table-movie-url:hover,
+.table-data .table-movie-url:active {
+    text-decoration: none !improtant;
+}
+
+.vertical-align-data {
+    padding-top: 32px !important;
+}
+
+.vertical-align-data a {
+    position: relative;
+    bottom: 2px;
+}
+
+
+/* footer */
+
+.my-footer {
+    background: rgb(0, 121, 107);
+    padding: 5px 0px;
+    margin-top: 250px;
+}
+
+.website-footer-name {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 20px;
+}
+
+.website-social-media a {
+    color: white !important;
+    text-decoration: none !important;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+
+/* movie state page */
+
+.movie-state-page {
+    margin-top: 100px;
+}
+
+
+/* signin-page */
+
+.signin-page {
+    margin-top: 60px;
+}
+
+
+/* my list page */
+
+.my-list-page {
+    margin-top: 80px;
+}
+
+.my-list-header {
+    margin-bottom: 50px;
+    font-weight: 700;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.watched-list {
+    margin-bottom: 20px;
+}
+
+
+/*advance search page*/
+
+.advance-search-page {
+    margin-top: 80px;
+    font-weight: 700;
+}
+
+.search-image-div img {
+    height: 12vh;
+    float: left;
+}
+
+.advance-search-header {
+    margin-bottom: 50px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.advance-search-box {
+    margin-bottom: 50px;
+}
+
+.advance-search-inputs {
+    margin-top: 5px;
+}
+
+.movies-advance-list {
+    margin-bottom: 20px;
+}
+
+.movie-advance-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 10px;
+    position: relative;
+    top: 20px;
+}
+
+.sort-input {
+    margin-top: 15px;
+}
+
+.input-field {
+    margin-bottom: 30px;
+}
+
+
+/* users page */
+
+.users-page {
+    margin-top: 60px;
+}
+
+.users-page-header {
+    margin-bottom: 50px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.user-sort-type {
+    cursor: pointer;
+}
+
+.search-user-row {
+    margin-bottom: 50px;
+}
+
+.userList a {
+    color: black !important;
+}
+
+
+/* screenshot page*/
+
+.screenshot-page {
+    margin-top: 100px;
+}
+
+.screenshot-header {
+    margin-bottom: 50px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.screenshot-header a {
+    color: black !important;
+    text-decoration: none;
+}
+
+.screen-box {
+    margin-bottom: 20px;
+}
+
+.add-more-screenshot {
+    margin-top: 50px;
+}
+
+
+/*cast page*/
+
+.cast-page {
+    margin-top: 60px;
+}
+
+.cast-header {
+    margin-bottom: 50px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+
+/* user list*/
+
+.user-list-page {
+    margin-top: 80px;
+}
+
+.user-list-header {
+    margin-bottom: 50px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+@media (max-width: 766px) {
+    .website-name {
+        margin-left: 0px !important;
+    }
+    .search-dropdown {
+        width: 300px !important
+    }
+}

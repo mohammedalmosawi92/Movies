@@ -1,0 +1,86 @@
+<div class="users-page" ng-init="loadData()">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="users-page-header">Users List</h1>
+            </div>
+        </div>
+        <div class="search-user-row">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <input type="text" ng-model="searchUsers" class="form-control" placeholder="Search for Users">
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button ng-click="search()" class="btn btn-primary">Search</button>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button ng-click="loadData()" class="btn btn-primary">All Users</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center user-sort-type" ng-click="sortByName()">Username</th>
+                                <th class="text-center user-sort-type" ng-click="sortByStatus()">Status</th>
+                                <th class="text-center">Delete</th>
+                                <th class="text-center">Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="users in list | orderBy : sortType : sortWay">
+                            <tr class="text-center" ng-if="users.isEdit === false">
+                                <td>{{$index + 1}}</td>
+                                <td class="userList">
+                                    <a href="#/userList/{{users._id}}">
+                                    {{users.username}}
+                                    </a>
+                                </td>
+                                <td>{{users.privilege}}</td>
+                                <td>
+                                    <button ng-click="deleteUser(users._id)" class="btn btn-danger btn-sm">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button ng-click="editUser(users._id, users.username)" class="btn btn-success btn-sm">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="text-center" ng-if="users.isEdit">
+                                <td>{{$index + 1}}</td>
+                                <td>
+                                    <input class="form-control" placeholder="Username" ng-model="users.username">
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-model="users.privilege">
+                                        <option value="admin">admin</option>
+                                        <option value="user">user</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button ng-click="deleteUser(users._id)" class="btn btn-danger btn-sm" ng-show="users.match">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button ng-click="updateUser(users._id, users.username)" class="btn btn-success btn-sm">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

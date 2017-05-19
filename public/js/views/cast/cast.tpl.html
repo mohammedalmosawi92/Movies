@@ -1,0 +1,35 @@
+<div class="cast-page" ng-init="loadData()">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="cast-header">{{movie.title}} Screenshots</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4" ng-repeat="cast in movie.cast track by $index">
+                <div class="cast-box">
+                    <button ng-click="deleteCast($index)" class="btn btn-danger" ng-if="priv() === 'admin'">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                    <button ng-click="updateCast($index)" class="btn btn-success" ng-if="priv() === 'admin' && edit[$index] === false">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </button>
+                    <button ng-click="saveCast($index, movie.cast[$index])" class="btn btn-success" ng-if="priv() === 'admin' && edit[$index]">
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </button>
+
+                    <img ng-src="{{movie.cast[$index].url_small_image}}" class="img-responsive" ng-if="edit[$index] === false">
+                    <input type="url" ng-model="movie.cast[$index].url_small_image" class="form-control" ng-if="edit[$index]">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <input type="url" class="form-control" ng-model="newScreen" placeholder="Screenshot URL">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success" ng-click="addScreen()">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

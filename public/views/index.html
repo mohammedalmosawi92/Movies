@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../Movies.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <script src="https://use.fontawesome.com/777811c730.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="myApp" ng-controller="ctrl">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-full">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <div class="collapse-icon">
+                    <i class="glyphicon glyphicon-align-justify"></i>
+                </div>
+            </button>
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    <img src="/views/Movies-icon.png" class="img-responsive header-image">
+                    <header class="website-name">
+                        <a href="#/home">
+                            My Movies
+                        </a>
+                    </header>
+                </div>
+            </div>
+            <div class="myRoutes navbar-right">
+                <div class="collapse navbar-collapse" id="myNavbar">
+
+                    <ul class="nav navbar-nav">
+                        <li class="navbar-side">
+                            <a href="#/home" class="routes">
+                                <span class="route">Home</span>
+                            </a>
+                        </li>
+                        <li class="navbar-side">
+                            <a href="#/topMovies" class="routes">
+                                <span class="route">Top</span>
+                            </a>
+                        </li>
+                        <li class="navbar-side" ng-show="hide()">
+                            <a href="#/myList" class="routes contact">
+                                <span class="route">My List</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav">
+                        <li class="navbar-side pull-left">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown">
+                                    <div class="user">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu search-dropdown">
+                                    <div class="row">
+                                        <form name="searchForm">
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" placeholder="Search By Title" ng-model="movieSearch" required autofocus>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <button class="btn btn-primary btn-sm" ng-click="search()" ng-disabled="searchForm.$invalid || movieSearch.length < 3">
+                                                    Search
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a class="btn btn-success btn-sm" href="#/advanceSearch">
+                                                    Advance
+                                                </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav" ng-show="hide()"  ng-if="priv() === 'user'">
+                        <li class="navbar-side pull-left">
+                            <a class="dropdown-toggle" data-toggle="dropdown" ng-click="logout()">
+                                <div class="user">
+                                    <i class="glyphicon glyphicon-log-out"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav" ng-show="hide()" ng-if="priv() === 'admin'">
+                        <li class="navbar-side pull-left">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown">
+                                    <div class="user">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu login-dropdown">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="#/users"><h3>Users</h3></a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="#/addMovie"><h3>Add Movie</h3></a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a ng-click="logout()" href="#"><h3>Logout</h3></a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav" ng-hide="hide()">
+                        <li class="navbar-side pull-left">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown">
+                                    <div class="user">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu login-dropdown">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3>Login:</h3>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="form" name="myForm">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Username" ng-model="username" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control" placeholder="Password" ng-model="password" required>
+                                                    </div>
+                                                </form>
+                                                <div class="text-center">
+                                                    <button class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="signin()">
+                                                        Log in
+                                                    </button>
+                                                </div>
+                                                <div class="signup text-center">
+                                                    New here ? <a href="#/signup"><b>Join Us</b></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <ng-view></ng-view>
+    <footer class="my-footer">
+        <div class="container-full">
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <div class="website-footer-name">
+                        © 2017 My Movies
+                    </div>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <div class="website-social-media">
+                        <a href="https://facebook.com/LibyaTodays/" target="_blank">
+                            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://twitter.com/Mohammedazeez92" target="_blank">
+                            <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com/mohammedalmosawi92/?hl=en" target="_blank">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.reddit.com" target="_blank">
+                            <i class="fa fa-reddit" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.angularjs.org/1.6.2/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.6.2/angular-route.min.js"></script>
+    <script src="/js/services/auth.js"></script>
+    <script src="/js/filters/convertTime.js"></script>
+    <script src="/js/services/request.js"></script>
+    <script src="/js/services/token.js"></script>
+    <script src="/js/services/userPriv.js"></script>
+    <script src="/js/services/userId.js"></script>
+    <script src="/js/services/addMovies.js"></script>
+    <script src="/js/services/oneUser.js"></script>
+    <script src="/js/services/admin.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/views/home/home.js"></script>
+    <script src="/js/views/userList/userList.js"></script>
+    <script src="/js/views/cast/cast.js"></script>
+    <script src="/js/views/screenshot/screenshot.js"></script>
+    <script src="/js/views/users/users.js"></script>
+    <script src="/js/views/advanceSearch/advanceSearch.js"></script>
+    <script src="/js/views/addMovieState/addMovieState.js"></script>
+    <script src="/js/views/addMovie/addMovie.js"></script>
+    <script src="/js/views/searchList/searchList.js"></script>
+    <script src="/js/views/oneMovie/oneMovie.js"></script>
+    <script src="/js/views/signin/signin.js"></script>
+    <script src="/js/views/signup/signup.js"></script>
+    <script src="/js/views/top/top.js"></script>
+    <script src="/js/views/myList/myList.js"></script>
+</body>
+
+</html>
